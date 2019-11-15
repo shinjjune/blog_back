@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Joi = require("@hapi/joi");
+const mongoose = require('mongoose');
+const Joi = require('@hapi/joi');
 const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
@@ -9,7 +9,7 @@ const userSchema = new Schema({
   admin: { type: Boolean, default: false }
 });
 
-const User = model("User", userSchema);
+const User = model('User', userSchema);
 
 function validateUser(user) {
   const schema = Joi.object({
