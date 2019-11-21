@@ -43,23 +43,14 @@ router.post(
 router.get(
   '/',
   wrapper(async (req, res, next) => {
-    const { tag, page = '1' } = req.query;
+    const { page = '1' } = req.query;
     const skip = parseInt(page) * 5 - 5;
-    if (tag) {
-      const posts = await Post.find()
-        .where('tags')
-        .in(tag)
-        .skip(skip)
-        .limit(5)
-        .sort('-date')
-        .populate('tags', 'name');
-      res.json({ posts });
-    } else {
+    {
       const posts = await Post.find()
         .limit(5)
         .skip(skip)
         .sort('-date')
-        .populate('tags', 'name');
+        .populate('name');
       res.json({ posts });
     }
     next();
